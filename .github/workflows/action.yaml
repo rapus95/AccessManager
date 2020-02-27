@@ -11,7 +11,7 @@ jobs:
         if: github.event.action == 'getaccess'
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ github.event.client_payload.REPO_TOKEN }}
+          token: ${{ secrets.PAT }}
           repository: ${{ github.event.client_payload.REPO }}
           event-type: ${{ github.event.client_payload.CALLBACK }}
           client-payload: '{"key": "${{ secrets.access }}"}'
