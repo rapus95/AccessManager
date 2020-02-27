@@ -1,12 +1,14 @@
 name: AccessManager
 on:
+  push:
   repository_dispatch:
-    types: [getaccess]
 jobs:
   manage:
     name: Callback
     steps:
-      - uses: peter-evans/repository-dispatch@v1
+      - name: manage
+        if: github.event.action == 'getaccess'
+        uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ github.event.client_payload.REPO_TOKEN }}
           repository: ${{ github.event.client_payload.REPO }}
