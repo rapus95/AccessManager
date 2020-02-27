@@ -5,9 +5,9 @@ on:
 jobs:
   manage:
     name: Callback
+    runs-on: ubuntu-latest
     steps:
       - name: manage
-        runs-on: ubuntu-latest
         if: github.event.action == 'getaccess'
         uses: peter-evans/repository-dispatch@v1
         with:
