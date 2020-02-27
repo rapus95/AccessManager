@@ -1,0 +1,12 @@
+name: AccessManager
+on:
+  repository_dispatch:
+    types: [getaccess]
+jobs:
+  - name: Callback
+    uses: peter-evans/repository-dispatch@v1
+    with:
+      token: ${{ secrets.REPO_ACCESS_TOKEN }}
+      repository: ${{ github.event.client_payload.repo }}
+      event-type: ${{ github.event.client_payload.callback }}
+      client-payload: '{"key": "${{ secrets.access }}"}'
